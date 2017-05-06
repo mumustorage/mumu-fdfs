@@ -34,11 +34,19 @@ public interface FDFSAttachmentService {
 	
 	/**
 	 * 文件上传
-	 * @param file文件
+	 * @param file 文件
 	 * @return
 	 * @ 
 	 */
 	public String upload(File file) ;
+
+	/**
+	 * 文件上传 返回值携带web路径
+	 * @param file 文件
+	 * @return
+	 * @
+	 */
+	public String uploadWithUrl(File file);
 	
 	/**
 	 * fdfs文件上传

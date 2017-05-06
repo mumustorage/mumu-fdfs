@@ -75,6 +75,11 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 			return null;
 		}
 	}
+	@Override
+	public String uploadWithUrl(File file) {
+		String upload = upload(file);
+		return webPath+"/"+upload;
+	}
 
 	@Override
 	public String upload(FDFSFile fdfsFile) {
@@ -176,6 +181,7 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 	}
 
 	private String configPath;//fastdfs 客户端配置文件
+	private String webPath;//web服务器地址
 	public String getConfigPath() {
 		return configPath;
 	}
@@ -190,5 +196,12 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 	public FDFSAttachmentServiceImpl(String configPath) {
 		this.configPath = configPath;
 	}
-	
+
+	public String getWebPath() {
+		return webPath;
+	}
+
+	public void setWebPath(String webPath) {
+		this.webPath = webPath;
+	}
 }
