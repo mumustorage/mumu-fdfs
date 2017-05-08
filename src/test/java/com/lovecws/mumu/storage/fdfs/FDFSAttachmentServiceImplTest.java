@@ -19,7 +19,7 @@ public class FDFSAttachmentServiceImplTest {
         //String url=fdfsAttachmentService.uploadWithUrl(new File("C:\\header.jpg"));
         //String url=fdfsAttachmentService.uploadWithUrl(new File("C:\\ERWin 7.3.zip"));
         //String url=fdfsAttachmentService.uploadWithUrl(new File("C:\\8月4日应用答疑（上）_知识讲解.avi"));
-        String url=fdfsAttachmentService.uploadWithUrl(new File("C:\\4.jdbc_resultset-new.mp4"));
+        String url=fdfsAttachmentService.uploadWithUrl(new File("C:\\ic_contract@2x.png"));
         System.out.print(url);
         applicationContext.stop();
     }
