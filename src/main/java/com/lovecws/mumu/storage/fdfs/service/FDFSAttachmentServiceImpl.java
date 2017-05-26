@@ -65,10 +65,11 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 
 	@Override
 	public String upload(File file) {
+		FDFSFile fdfsFile=null;
 		try {
 			byte[] content = FileUtils.readFileToByteArray(file);
 			String extension = FilenameUtils.getExtension(file.getName());
-			FDFSFile fdfsFile = new FDFSFile(file.getName(), content, extension);
+			fdfsFile = new FDFSFile(file.getName(), content, extension);
 			return this.upload(fdfsFile);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -78,6 +79,9 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 	@Override
 	public String uploadWithUrl(File file) {
 		String upload = upload(file);
+		if(upload==null){
+			return null;
+		}
 		return webPath+"/"+upload;
 	}
 
@@ -93,9 +97,21 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 			String[] upload_file = storageClient.upload_file(fdfsFile.getContent(), fdfsFile.getExt(), meta_list);
 			return upload_file[0] + FDFSConfig.SEPARATOR + upload_file[1];
 		} catch (IOException|MyException e) {
-			e.printStackTrace();
-			return null;
+			try{
+				//检测trackerServer 是否连通 如果没连通 则重新连接
+				boolean isActive = ProtoCommon.activeTest(trackerServer.getSocket());
+				if(!isActive){
+					trackerClient = new TrackerClient();
+					trackerServer = trackerClient.getConnection();
+					storageClient = new StorageClient(trackerServer, storageServer);
+				}
+				String[] upload_file = storageClient.upload_file(fdfsFile.getContent(), fdfsFile.getExt(), meta_list);
+				return upload_file[0] + FDFSConfig.SEPARATOR + upload_file[1];
+			}catch (Exception ex){
+				ex.printStackTrace();
+			}
 		}
+		return null;
 	}
 
 	@Override
@@ -154,6 +170,9 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 
 			trackerClient = new TrackerClient();
 			trackerServer = trackerClient.getConnection();
+
+			//测试trackerServer是否连通
+			ProtoCommon.activeTest(trackerServer.getSocket());
 
 			storageClient = new StorageClient(trackerServer, storageServer);
 			log.info("fastdfs分布式文件系统初始化完毕");
