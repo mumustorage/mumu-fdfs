@@ -16,19 +16,19 @@ FastDFS中的文件标识分为两个部分：卷名和文件名，二者缺一�
 
 FastDFS集群模式：
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134125_9973f41e_1059025.png "在这里输入图片标题")
 
 FastDFS文件上传操作：
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134136_bf898099_1059025.png "在这里输入图片标题")
 
 FastDFS文件下载操作：
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134145_0e680d9f_1059025.png "在这里输入图片标题")
 
 
 FastDFS文件索引解析
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134155_90cd83b1_1059025.png "在这里输入图片标题")
 
 2 FastDFS 安装（centos）
 
@@ -66,11 +66,11 @@ FastDFS 安装：
 
 注意绑定的端口号和base_path
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134208_21e23316_1059025.png "在这里输入图片标题")
 
 修改storage.conf
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134219_8ada3c78_1059025.png "在这里输入图片标题")
 
 
 
@@ -85,7 +85,7 @@ FastDFS 安装：
 启动完成之后 查看启动日志
 
 vim /opt/fdfs/storage/logs/storaged.log 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134232_446a368e_1059025.png "在这里输入图片标题")
 
 因为我们之启动了一台tracker server所以，当前的tracker就是leader
 
@@ -105,13 +105,13 @@ vim /opt/fdfs/storage/logs/storaged.log 
 
 FastDFS 文件存储目录结构图：
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134245_6c6f5df0_1059025.png "在这里输入图片标题")
 
 
 
 启动完成之后，查看日志文件：
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134253_9046f142_1059025.png "在这里输入图片标题")
 
 
 
@@ -122,14 +122,14 @@ FastDFS 文件存储目录结构图：
 测试文件上传之前，我们首先要修改配置文件:/etc/fdfs/client.conf 
 
 修改base_path、tracker_server
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134302_0c4daadb_1059025.png "在这里输入图片标题")
 
 
 配置完成之后，我们就可以测试文件上传
 
 /usr/local/bin/fdfs_test /etc/fdfs/client.conf upload /etc/my.cnf
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134309_a9194c4f_1059025.png "在这里输入图片标题")
 
 
 
@@ -151,7 +151,7 @@ tar -xzvf fastdfs-nginx-module_v1.16.tar.gz
 
 根据自己操作系统的配置 修改 fastdfs-nginx-module/src/config配置文件
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134319_94342769_1059025.png "在这里输入图片标题")
 
 
 
@@ -201,12 +201,12 @@ make && make install
 
 安装完成之后 配置nginx.conf
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134337_7ae7239b_1059025.png "在这里输入图片标题")
 
 mod_fastdfs
 
 nginx安装完成之后，会再/etc/fdfs目录下自动生成mod_fastdfs.conf配置文件（该文件目录可以通过在fastdfs-nginx-module中进行配置）
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134349_2d525c27_1059025.png "在这里输入图片标题")
 
 
 
@@ -234,7 +234,7 @@ https://sourceforge.net/projects/fastdfs/files/latest/download?source=files
 
 废话不多说了，解决方法：当在文件上传或者下载失败的时候，重新连接tracker服务，再次进行文件的上传下载。
 
-
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0607/134403_be38e223_1059025.png "在这里输入图片标题")
 
 本人对fastdfs做了一个简单的封装，源码地址为：
 
