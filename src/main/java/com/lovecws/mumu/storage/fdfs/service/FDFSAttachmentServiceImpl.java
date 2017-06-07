@@ -88,10 +88,13 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 	@Override
 	public String upload(FDFSFile fdfsFile) {
 		// 设置文件的宽、高、作者
-		NameValuePair[] meta_list = new NameValuePair[3];
-		meta_list[0] = new NameValuePair("width", fdfsFile.getWidth());
-		meta_list[1] = new NameValuePair("heigth", fdfsFile.getHeight());
-		meta_list[2] = new NameValuePair("author", fdfsFile.getAuthor());
+		NameValuePair[] meta_list=null;
+		if(metaData){
+			meta_list = new NameValuePair[3];
+			meta_list[0] = new NameValuePair("width", fdfsFile.getWidth());
+			meta_list[1] = new NameValuePair("heigth", fdfsFile.getHeight());
+			meta_list[2] = new NameValuePair("author", fdfsFile.getAuthor());
+		}
 
 		try {
 			String[] upload_file = storageClient.upload_file(fdfsFile.getContent(), fdfsFile.getExt(), meta_list);
@@ -201,6 +204,7 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 
 	private String configPath;//fastdfs 客户端配置文件
 	private String webPath;//web服务器地址
+	private boolean metaData=false;//是否保存文件属性信息
 	public String getConfigPath() {
 		return configPath;
 	}
@@ -222,5 +226,13 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 
 	public void setWebPath(String webPath) {
 		this.webPath = webPath;
+	}
+
+	public boolean isMetaData() {
+		return metaData;
+	}
+
+	public void setMetaData(boolean metaData) {
+		this.metaData = metaData;
 	}
 }

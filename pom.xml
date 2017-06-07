@@ -4,7 +4,7 @@
 
   <groupId>com.lovecws.mumu</groupId>
   <artifactId>mumu-storage-fdfs</artifactId>
-  <version>1.0-RELEASE</version>
+  <version>1.1-RELEASE</version>
   <packaging>jar</packaging>
 
   <name>mumu-storage-fdfs</name>

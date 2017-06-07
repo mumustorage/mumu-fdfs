@@ -24,6 +24,7 @@
 		init-method="init" destroy-method="destory" scope="singleton"
 		lazy-init="true">
 		<property name="configPath" value="fdfs_client.conf" />
-		<property name="webPath" value="120.77.13.93" />
+		<property name="webPath" value="192.168.11.25" />
+		<property name="metaData" value="false" />
 	</bean>
 </beans>
