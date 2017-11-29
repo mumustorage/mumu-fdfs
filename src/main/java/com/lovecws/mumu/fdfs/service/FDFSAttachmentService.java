@@ -1,6 +1,6 @@
-package com.lovecws.mumu.storage.fdfs.service;
+package com.lovecws.mumu.fdfs.service;
 
-import com.lovecws.mumu.storage.fdfs.bean.FDFSFile;
+import com.lovecws.mumu.fdfs.bean.FDFSFile;
 import org.csource.fastdfs.FileInfo;
 
 import java.io.File;

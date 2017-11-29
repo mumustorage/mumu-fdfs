@@ -1,6 +1,6 @@
-package com.lovecws.mumu.storage.fdfs.bean;
+package com.lovecws.mumu.fdfs.bean;
 
-import com.lovecws.mumu.storage.fdfs.config.FDFSConfig;
+import com.lovecws.mumu.fdfs.config.FDFSConfig;
 
 /**
  * @author ganliang

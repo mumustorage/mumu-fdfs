@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/mumu-storage-fdfs.iml" filepath="$PROJECT_DIR$/mumu-storage-fdfs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mumu-fdfs.iml" filepath="$PROJECT_DIR$/mumu-fdfs.iml" />
     </modules>
   </component>
 </project>

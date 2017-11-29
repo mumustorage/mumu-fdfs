@@ -1,4 +1,4 @@
-package com.lovecws.mumu.storage.fdfs.config;
+package com.lovecws.mumu.fdfs.config;
 
 import java.io.Serializable;
 

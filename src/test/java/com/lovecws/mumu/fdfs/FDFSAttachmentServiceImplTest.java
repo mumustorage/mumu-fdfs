@@ -1,6 +1,6 @@
-package com.lovecws.mumu.storage.fdfs;
+package com.lovecws.mumu.fdfs;
 
-import com.lovecws.mumu.storage.fdfs.service.FDFSAttachmentService;
+import com.lovecws.mumu.fdfs.service.FDFSAttachmentService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.File;
@@ -15,12 +15,12 @@ import java.util.zip.CheckedInputStream;
  */
 public class FDFSAttachmentServiceImplTest {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         upload();
         crc();
     }
 
-    public static void upload(){
+    public static void upload() {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring-storage-fdfs.xml");
         applicationContext.start();
         FDFSAttachmentService fdfsAttachmentService = applicationContext.getBean(FDFSAttachmentService.class);
@@ -29,18 +29,18 @@ public class FDFSAttachmentServiceImplTest {
         //String url=fdfsAttachmentService.uploadWithUrl(new File("C:\\header.jpg"));
         //String url=fdfsAttachmentService.uploadWithUrl(new File("C:\\ERWin 7.3.zip"));
         //String url=fdfsAttachmentService.uploadWithUrl(new File("C:\\8月4日应用答疑（上）_知识讲解.avi"));
-        String url = fdfsAttachmentService.uploadWithUrl(new File("D:\\1.jpg"));
+        String url = fdfsAttachmentService.uploadWithUrl(new File("D:\\data\\4.txt"));
         System.out.println(url);
         applicationContext.stop();
     }
 
-    public static void crc(){
+    public static void crc() {
         CRC32 crc32 = new CRC32();
         FileInputStream fileinputstream = null;
         CheckedInputStream checkedinputstream = null;
         String crc = null;
         try {
-            fileinputstream = new FileInputStream(new File("D:\\1.jpg"));
+            fileinputstream = new FileInputStream(new File("D:\\data\\4.txt"));
             checkedinputstream = new CheckedInputStream(fileinputstream, crc32);
             while (checkedinputstream.read() != -1) {
             }

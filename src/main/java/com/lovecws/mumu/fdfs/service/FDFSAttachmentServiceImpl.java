@@ -1,7 +1,7 @@
-package com.lovecws.mumu.storage.fdfs.service;
+package com.lovecws.mumu.fdfs.service;
 
-import com.lovecws.mumu.storage.fdfs.bean.FDFSFile;
-import com.lovecws.mumu.storage.fdfs.config.FDFSConfig;
+import com.lovecws.mumu.fdfs.bean.FDFSFile;
+import com.lovecws.mumu.fdfs.config.FDFSConfig;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
@@ -167,9 +167,9 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 					.getCanonicalPath();
 			String fdfsClientConfigFilePath = classPath + File.separator + FDFSConfig.CLIENT_CONFIG_FILE;*/
 			//path = path.replace("!", "");
-			log.info("读取fdfs配置文件:" + configPath);
+			log.info("load fastDFS properties:" + configPath);
 
-			ClientGlobal.init(configPath);
+			ClientGlobal.init(configPath,tracker_server);
 
 			trackerClient = new TrackerClient();
 			trackerServer = trackerClient.getConnection();
@@ -178,7 +178,7 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 			ProtoCommon.activeTest(trackerServer.getSocket());
 
 			storageClient = new StorageClient(trackerServer, storageServer);
-			log.info("fastdfs分布式文件系统初始化完毕");
+			log.info("fastDFS distribute system load complete....");
 		} catch (FileNotFoundException e) {
 			log.error(e);
 		} catch (IOException e) {
@@ -205,6 +205,7 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 	private String configPath;//fastdfs 客户端配置文件
 	private String webPath;//web服务器地址
 	private boolean metaData=false;//是否保存文件属性信息
+	private String tracker_server;
 	public String getConfigPath() {
 		return configPath;
 	}
@@ -234,5 +235,13 @@ public class FDFSAttachmentServiceImpl implements FDFSAttachmentService {
 
 	public void setMetaData(boolean metaData) {
 		this.metaData = metaData;
+	}
+
+	public String getTracker_server() {
+		return tracker_server;
+	}
+
+	public void setTracker_server(String tracker_server) {
+		this.tracker_server = tracker_server;
 	}
 }
